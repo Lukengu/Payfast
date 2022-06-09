@@ -34,7 +34,7 @@ enum ConfigurationError: Error {
 public struct Subscription {
     var token:String!
     public var delegate:SubscriptionDelegate?
-    var configuration: [String: String]!
+    public var configuration: [String: String]!
     
     /// Payfast Subscription Object
     /// - Parameter token: Payfast  recurring billing subscription or recurring adhoc token
