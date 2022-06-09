@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>apiEndpoint</key>
+	<string>https://api.payfast.co.za/subscriptions/</string>
+	<key>passphrase</key>
+	<string></string>
+	<key>merchantID</key>
+	<string></string>
+	<key>merchantKey</key>
+	<string></string>
+	<key>returnUrl</key>
+	<string></string>
+	<key>cancelUrl</key>
+	<string></string>
+	<key>notifyUrl</key>
+	<string></string>
+	<key>paymentUrl</key>
+	<string>https://www.payfast.co.za/eng/process</string>
+</dict>
+</plist>
