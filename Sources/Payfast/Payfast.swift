@@ -38,7 +38,7 @@ public struct Subscription {
     
     /// Payfast Subscription Object
     /// - Parameter token: Payfast  recurring billing subscription or recurring adhoc token
-    public init(_ token : String) throws {
+    public init(_ token : String) {
         self.token = token
         if let infoPlistUrl = Bundle.module.url(forResource: "settings", withExtension: "plist"),
            let dict = NSDictionary(contentsOf: infoPlistUrl) as? [String: String] {
