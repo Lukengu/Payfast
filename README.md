@@ -12,15 +12,18 @@ Use the settings plist to store your configurable variable:
 How to use
 1. Payment processor 
 use statically as follow
-PaymentProcessor.setUp([String : String], completion: redirectUrl) where 
+```swift
+PaymentProcessor.setUp(_ params:[String : String], completion: redirectUrl) 
+```
+where 
 [String : String] is the your payment parameters such amount, email_address ...
 required element amount, email_address, m_payment_id
+
 2. Recurring Payment
 instaniate with the token
-```
+```swift
 var  subscription = Subscription(token)
 subscription.delegate = your delegate
-
 ```
 
     - subscription.get() will return the subscription detail
@@ -31,8 +34,7 @@ subscription.delegate = your delegate
 The subscription implements a SubscriptionDelegate with two methods 
 ```
 func success(_ data: JSON)
-func failure()
-
+func failure(
 ```
 Enjoy!
 
