@@ -45,7 +45,11 @@ public struct PaymentProcessor {
             signature = signature.replacingOccurrences(of: "%20", with:"+")
             return signature.md5
     }
-    
+
+    /// Setting up the payment
+    /// - Parameters:
+    ///   - purchase: Payment info for susbcriptions ["name_first" : "", "name_last" : "","email_address" : "","m_payment_id" : "","amount" : "","item_name": "","subscription_type": "","recurring_amount": "","frequency": "","cycles": ""]
+    /// - completion: retunUrl will be returned
     public static func setUp  (_ purchase:OrderedDictionary<String,String>, completion: @escaping redirectUrl ) throws {
         if !purchase.keys.contains("m_payment_id") {
             throw RequiredKeyError.runtimeError("m_payment_id key not set")

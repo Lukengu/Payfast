@@ -5,17 +5,17 @@
 	<key>apiEndpoint</key>
 	<string>https://api.payfast.co.za/subscriptions/</string>
 	<key>passphrase</key>
-	<string>RraNg3dpPlzhi8ygdbnZX</string>
+	<string></string>
 	<key>merchantID</key>
-	<string>17938751</string>
+	<string></string>
 	<key>merchantKey</key>
-	<string>tkal30hzpruwv</string>
+	<string></string>
 	<key>returnUrl</key>
-	<string>https://dkitchen.mountainoftestimony.co.za/api/v1/arngd/payment/success</string>
+	<string></string>
 	<key>cancelUrl</key>
-	<string>https://dkitchen.mountainoftestimony.co.za/api/v1/arngd/payment/cancel</string>
+	<string></string>
 	<key>notifyUrl</key>
-	<string>https://dkitchen.mountainoftestimony.co.za/api/v1/arngd/payment/notify</string>
+	<string></string>
 	<key>paymentUrl</key>
 	<string>https://www.payfast.co.za/eng/process</string>
 </dict>
