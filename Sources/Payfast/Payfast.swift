@@ -1,8 +1,8 @@
 //
-//  File.swift
+//  PayFast.swift
 //  
 //
-//  Created by FGX on 2022/06/09.
+//  Created by Philippe Bona on 2022/06/09.
 //
 
 import Foundation
@@ -32,7 +32,7 @@ enum ConfigurationError: Error {
 
 
 public struct Subscription {
-    var token:String!
+    private var token:String!
     public var delegate:SubscriptionDelegate?
     public var configuration: [String: String]!
     
@@ -47,14 +47,17 @@ public struct Subscription {
         
     }
     
+    ///Get the subsccription object
     public func get(){
         execute(.fetch, method: .get)
     }
     
+    ///Cancels the subscription entirely. When a subscription is cancelled the customer will be notified of this via email.
     public func cancel(){
         execute(.cancel, method: .put)
     }
     
+    ///Pauses the subscription.
     public func pause(_ cycles:Int? = nil){
         var params:[String:String] = [:]
         if(cycles != nil){
@@ -62,13 +65,13 @@ public struct Subscription {
         }
         execute(.pause, method: .put, params: params)
     }
-    
+    ///UnPauses the subscription.
     public func unpause() {
         execute(.unpause, method: .put)
     }
     
     
-    func addHeaders(_ request: inout URLRequest, params:[String:String]? = nil){
+    private func addHeaders(_ request: inout URLRequest, params:[String:String]? = nil){
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let timestamp = formatter.string(from: Date())
@@ -81,11 +84,11 @@ public struct Subscription {
         
     }
     
-    func getUrl(action:String) -> URLRequest{
+    private func getUrl(action:String) -> URLRequest{
         return URLRequest(url: URL(string:String(format:configuration["apiEndpoint"]!+token+"/%@", action))!,timeoutInterval: Double.infinity)
     }
     
-    func getRequestBody(_ params: [String:String]) -> Data {
+    private func getRequestBody(_ params: [String:String]) -> Data {
         var body = ""
         params.forEach({ key,value in
             body += key+"="+value+"&"
@@ -94,7 +97,7 @@ public struct Subscription {
         return body.data(using: .utf8)!
     }
     
-    func generateSignature(with timestamp:String, for params:[String:String]? = nil) -> String {
+    private func generateSignature(with timestamp:String, for params:[String:String]? = nil) -> String {
         var signature = ""
         
         if(params != nil){
@@ -111,7 +114,7 @@ public struct Subscription {
         return signature.md5
     }
     
-    func execute(_ action:Action,method:HttpMethod,params:[String:String]? = nil){
+    private func execute(_ action:Action,method:HttpMethod,params:[String:String]? = nil){
         
         var request = getUrl(action: action.rawValue)
         
