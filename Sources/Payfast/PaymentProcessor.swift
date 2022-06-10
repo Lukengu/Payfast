@@ -92,6 +92,8 @@ public struct PaymentProcessor {
                 completion("")
                 return
             }
+            print("HTML _______")
+            print(html)
             let matches = regex.matches(in: html!)
             completion( String(matches[0].values[1]!))
             
