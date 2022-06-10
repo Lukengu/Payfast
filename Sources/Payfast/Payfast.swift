@@ -9,6 +9,7 @@ import Foundation
 import SwiftyJSON
 import Alamofire
 
+
 public protocol SubscriptionDelegate {
     func success(_ data: JSON)
     func failure()
@@ -26,9 +27,7 @@ enum HttpMethod: String, CaseIterable {
     case get = "GET"
 }
 
-enum ConfigurationError: Error {
-    case runtimeError(String)
-}
+
 
 
 public struct Subscription {

@@ -13,12 +13,9 @@ How to use
 1. Payment processor 
 use statically as follow
 ```swift
-PaymentProcessor.setUp(_ params:[String : String], completion: redirectUrl) 
+PaymentProcessor.setUp(_ params:OrderedDictionary<String,String>, completion: redirectUrl) 
 ```
-where 
-[String : String] is the your payment parameters such amount, email_address ...
-required element amount, email_address, m_payment_id
-
+Where params is the your purchase info: please use name_first for First Name if passed, name_last for Last Name and email_address for email and required m_payment_id  your own system generated PaymentId 
 2. Recurring Payment
 instaniate with the token
 ```swift
