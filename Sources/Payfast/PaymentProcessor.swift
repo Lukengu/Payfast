@@ -82,7 +82,7 @@ public struct PaymentProcessor {
         }
         bodyRequest.queryItems!.append(URLQueryItem(name:"signature", value: generateSignature(purchase, for:date)))
         
-        var request = URLRequest(url: URL(string: "https://eoevpfgaq7blhvh.m.pipedream.net")!)
+        var request = URLRequest(url: URL(string: configuration["paymentUrl"]!)!)
         request.httpMethod = "POST"
         request.allHTTPHeaderFields = headers
         request.httpBody = bodyRequest.query?.data(using: .utf8)
